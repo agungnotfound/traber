@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\WajibPajak;
 
 class WajibPajakController extends Controller
 {
@@ -15,7 +17,12 @@ class WajibPajakController extends Controller
     public function index()
     {
         //
-        return view('admin.index');
+        $data = DB::table('wajib_pajak')
+                    ->join('jenis_pelayanan', 'wajib_pajak.id_pelayanan', '=', 'jenis_pelayanan.id')
+                    ->join('status_files', 'wajib_pajak.id_status', '=', 'status_files.id')
+                    ->select('wajib_pajak.*', 'jenis_pelayanan.nama_pelayanan', 'status_files.status')
+                    ->get();
+        return view('admin.index-berkas', compact('data'));
 
     }
 
@@ -26,7 +33,7 @@ class WajibPajakController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-doc');
     }
 
     /**
@@ -37,7 +44,22 @@ class WajibPajakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'no_pelayanan' => 'required|unique:wajib_pajak',
+        ]);
+
+        WajibPajak::create([
+            'no_pelayanan' => $request['no_pelayanan'],
+            'nama_wp' => $request['nama_wp'],
+            'no_hp' => $request['no_hp'],
+            'alamat_pemohon' => $request['alamat_pemohon'],
+            'alamat_objek_pajak' => $request['alamat_objek_pajak'],
+            'luas_tanah' => $request['luas_tanah'],
+            'luas_bangunan' => $request['luas_bangunan'],
+            'id_pelayanan' => $request['jenis_pelayanan'],
+        ]);
+        
+        return redirect()->back()->with('message', 'Berkas wajib pajak berhasil ditambah!');
     }
 
     /**
@@ -69,9 +91,13 @@ class WajibPajakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $dataWP = WajibPajak::Find($request['no_pelayanan']);
+        $dataWP->id_status = (int)$request['status'];
+        $dataWP->save();
+        return redirect()->back()->with('message', 'Status No. Pelayanan: '.$request['no_pelayanan'] .' berhasil di update!');
     }
 
     /**
