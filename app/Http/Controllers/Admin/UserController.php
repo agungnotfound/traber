@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -15,6 +17,12 @@ class UserController extends Controller
     public function index()
     {
         //
+        $users = DB::table('users')
+                    ->join('roles', 'users.role_id', '=', 'roles.id')
+                    ->select('users.*', 'roles.role')
+                    ->get();
+
+        return view('admin.index-user', compact('users'));
     }
 
     /**
@@ -24,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-user');
     }
 
     /**
@@ -57,7 +65,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.edit-user', compact('user'));
     }
 
     /**
@@ -69,7 +78,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'password' => 'required| min:5| max:7 |confirmed',
+            'password_confirmation' => 'required| min:5'
+        ]);
+        $user = User::find($id);
+        $user->name = $request['name'];
+        $user->password = bcrypt($request['password']);
+        $user->role_id = $request['role'];
+        $user->save();
+
+        return redirect()->back()->with('message', 'User behasil diedit!');
     }
 
     /**
@@ -81,5 +101,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        dd($id);
     }
 }
