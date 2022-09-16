@@ -26,5 +26,18 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo;
+
+    public function __construct()
+    {
+        if (Auth::guard($guard)->check() && Auth::user()->role_id == '1') {
+            $this->redirectTo = route('admin.dashboard');
+        } elseif(Auth::guard($guard)->check() && Auth::user()->role_id == '2'){
+            $this->redirectTo = route('pegawai.dashboard');
+        } elseif(Auth::guard($guard)->check() && Auth::user()->role_id == '3'){
+            $this->redirectTo = route('kupt.dashboard');
+        }
+        
+        $this->middleware('guest')->except('logout');
+    }
 }
