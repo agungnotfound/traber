@@ -12,6 +12,11 @@
                         @csrf
 
                         <div class="row mb-3">
+                            @if(Session::has('error'))
+                            <div class="alert alert-danger text-center">
+                                {{Session::get('error')}}
+                            </div>
+                            @endif
                             <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 
                             <div class="col-md-6">

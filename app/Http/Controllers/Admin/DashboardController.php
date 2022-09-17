@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\WajibPajak;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        $objekPajakBaru = WajibPajak::where('id_status', 1)->count() ;
+        $mutasiHabis = WajibPajak::where('id_status', 2)->count() ;
+        $mutasiSebagian = WajibPajak::where('id_status', 3)->count() ;
+        $pembetulan = WajibPajak::where('id_status', 4)->count() ;
+
+        // dd($mutasiHabis);
+
+        return view('admin.dashboard', compact('objekPajakBaru', 'mutasiHabis','mutasiSebagian','pembetulan'));
     }
 
     /**
