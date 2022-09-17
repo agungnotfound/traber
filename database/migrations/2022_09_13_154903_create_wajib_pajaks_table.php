@@ -20,12 +20,13 @@ class CreateWajibPajaksTable extends Migration
             $table->longText('alamat_pemohon');
             $table->longText('alamat_objek_pajak');
             $table->double('luas_tanah', 15, 8);
+            $table->double('luas_bangunan', 15, 8);
             $table->unsignedBigInteger('id_pelayanan');
             $table->foreign('id_pelayanan')
                     ->references('id')->on('jenis_pelayanan')
                     ->onUpdate('no action')
                     ->onDelete('no action');
-            $table->unsignedBigInteger('id_status');
+            $table->unsignedBigInteger('id_status')->default(1);
             $table->foreign('id_status')
                     ->references('id')->on('status_files')
                     ->onUpdate('no action')
