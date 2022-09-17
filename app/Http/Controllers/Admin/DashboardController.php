@@ -15,10 +15,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $objekPajakBaru = WajibPajak::where('id_status', 1)->count() ;
-        $mutasiHabis = WajibPajak::where('id_status', 2)->count() ;
-        $mutasiSebagian = WajibPajak::where('id_status', 3)->count() ;
-        $pembetulan = WajibPajak::where('id_status', 4)->count() ;
+        $objekPajakBaru = WajibPajak::where('id_pelayanan', 1)->count() ;
+        $mutasiHabis = WajibPajak::where('id_pelayanan', 2)->count() ;
+        $mutasiSebagian = WajibPajak::where('id_pelayanan', 3)->count() ;
+        $pembetulan = WajibPajak::where('id_pelayanan', 4)->count() ;
 
         // dd($mutasiHabis);
 
