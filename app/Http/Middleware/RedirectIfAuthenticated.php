@@ -22,9 +22,9 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check() && Auth::user()->role_id == '1') {
             return redirect()->route('admin.dashboard');
         } elseif(Auth::guard($guard)->check() && Auth::user()->role_id == '2'){
-            return redirect()->route('anggota.dashboard');
+            return redirect()->route('pegawai.dashboard');
         } elseif(Auth::guard($guard)->check() && Auth::user()->role_id == '3'){
-            return redirect()->route('ketua.dashboard');
+            return redirect()->route('kupt.dashboard');
         }else {
             return $next($request);
         }
