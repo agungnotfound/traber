@@ -14,37 +14,77 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                <li class="nav-item">
-                    <a href="{{route('admin.dashboard')}}" class="nav-link"><i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                @if(Auth::user()->role_id == '1')
+                    <li class="nav-item">
+                        <a href="{{route('admin.dashboard')}}" class="nav-link"><i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{route('admin.profile.edit')}}" class="nav-link"><i class="nav-icon fa fa-user-circle"></i>
-                        <p>Edit Profile</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.profile.edit')}}" class="nav-link"><i class="nav-icon fa fa-user-circle"></i>
+                            <p>Edit Profile</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{route('admin.wajib-pajak.index')}}" class="nav-link"><i class="nav-icon fas fa-copy"></i>
-                        <p>Management Berkas</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.wajib-pajak.index')}}" class="nav-link"><i class="nav-icon fas fa-copy"></i>
+                            <p>Management Berkas</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{route('admin.user.index')}}" class="nav-link"><i class="nav-icon fa fa-users"></i>
-                        <p>Management User</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.user.index')}}" class="nav-link"><i class="nav-icon fa fa-users"></i>
+                            <p>Management User</p>
+                        </a>
+                    </li>
+                @endif
 
+                @if(Auth::user()->role_id == '2')
+                    <li class="nav-item">
+                        <a href="{{route('pegawai.dashboard')}}" class="nav-link"><i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('pegawai.profile.edit')}}" class="nav-link"><i class="nav-icon fa fa-user-circle"></i>
+                            <p>Edit Profile</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('pegawai.wajib-pajak.index')}}" class="nav-link"><i class="nav-icon fas fa-copy"></i>
+                            <p>Management Berkas</p>
+                        </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->role_id == '3')
+                    <li class="nav-item">
+                        <a href="{{route('kupt.dashboard')}}" class="nav-link"><i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('kupt.profile.edit')}}" class="nav-link"><i class="nav-icon fa fa-user-circle"></i>
+                            <p>Edit Profile</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('kupt.wajib-pajak.index')}}" class="nav-link"><i class="nav-icon fas fa-copy"></i>
+                            <p>Management Berkas</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"><i class="nav-icon fa fa-power-off" aria-hidden="true"></i>Logout</a>
+                    document.getElementById('logout-form').submit();"><i class="nav-icon fa fa-power-off" aria-hidden="true"></i><p>Logout</p> </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                 </li>
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
