@@ -47,6 +47,10 @@ Route::group(
         Route::post('wajib-pajak.store', 'WajibPajakController@store')->name('wajib-pajak.store');
         Route::get('wajib-pajak.index', 'WajibPajakController@index')->name('wajib-pajak.index');
         Route::post('wajib-pajak.update', 'WajibPajakController@update')->name('wajib-pajak.update');
+        Route::get('wajib-pajak.edit/{id}', 'WajibPajakController@edit')->name('wajib-pajak.edit');
+        Route::post('wajib-pajak.update-data}', 'WajibPajakController@updateData')->name('wajib-pajak.update-data');
+        Route::get('wajib-pajak.destroy/{id}', 'WajibPajakController@destroy')->name('wajib-pajak.destroy');
+
 
         // profile
         Route::get('profile.edit', 'ProfileController@edit')->name('profile.edit');
@@ -73,6 +77,9 @@ Route::group(
         Route::post('wajib-pajak.store', 'WajibPajakController@store')->name('wajib-pajak.store');
         Route::get('wajib-pajak.index', 'WajibPajakController@index')->name('wajib-pajak.index');
         Route::post('wajib-pajak.update', 'WajibPajakController@update')->name('wajib-pajak.update');
+        Route::get('wajib-pajak.edit/{id}', 'WajibPajakController@edit')->name('wajib-pajak.edit');
+        Route::get('wajib-pajak.destroy/{id}', 'WajibPajakController@destroy')->name('wajib-pajak.destroy');
+        Route::post('wajib-pajak.update-data}', 'WajibPajakController@updateData')->name('wajib-pajak.update-data');
        
     }
 );
@@ -96,5 +103,9 @@ Route::group(
         Route::post('wajib-pajak.store', 'WajibPajakController@store')->name('wajib-pajak.store');
         Route::get('wajib-pajak.index', 'WajibPajakController@index')->name('wajib-pajak.index');
         Route::post('wajib-pajak.update', 'WajibPajakController@update')->name('wajib-pajak.update');
+        Route::get('wajib-pajak.edit/{id}', 'WajibPajakController@edit')->name('wajib-pajak.edit');
+        Route::get('wajib-pajak.destroy/{id}', 'WajibPajakController@destroy')->name('wajib-pajak.destroy');
+        Route::post('wajib-pajak.update-data}', 'WajibPajakController@updateData')->name('wajib-pajak.update-data');
+       
     }
 );
