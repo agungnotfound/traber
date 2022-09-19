@@ -24,7 +24,7 @@
     .progressbar li {
         list-style-type: none;
         float: left;
-        width: 11%;
+        width: 13%;
         position: relative;
         text-align: center;
     }
@@ -174,13 +174,7 @@
                 <div class="row" style="display:none;" id="flow-proses">
                     <div class=" offset-md-1">
                         <ul class="progressbar">
-                            <li id="">Pending</li>
-                            <li id="">Berkas diterima</li>
-                            <li id="">Dibuatkan NoPel</li>
-                            <li id="">Validasi Berkas oleh pendata</li>
-                            <li id="">Telah disetujui oleh K.UPT</li>
-                            <li id="">Proses oleh BAPENDA</li>
-                            <li id="">SPPT sudah tercetak</li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -196,6 +190,7 @@
             e.preventDefault();
             var nopel = $("#nopel").val();
             var htmlError = "";
+            var notes = "";
 
             $('ul li').removeClass("active");
             $('#no_pelayanan').text("");
@@ -209,6 +204,14 @@
             $('#file').hide();
             $('#detail-berkas').hide();
             $('#flow-proses').hide();
+
+            var status = ['Berkas diterima', 'Dibuatkan NoPel', 'Validasi Berkas oleh pendata', 'Telah disetujui oleh K.UPT','Proses oleh BAPENDA', 'SPPT sudah tercetak'];
+            var progressStatus = $(".progressbar");
+            $(".progressbar").empty();
+            $.each(status, function(i){
+                var newList = "<li>" + status[i]+ "</li>";
+                $(progressStatus).append(newList);
+            });
 
             $.ajax({
                 type: "POST",
@@ -246,6 +249,8 @@
                             $('ul li').each(function (index, item) {
                                 $(this).addClass("active");
                                 if ($(this).text() == field.status) {
+                                    notes = field.status + "<br>"+ "<p class='text-secondary'>"+field.notes+"</p>";
+                                    $(this).html(notes);
                                     return false;
                                 }
                             });
