@@ -101,6 +101,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        dd($id);
+        User::where('id', $id)->delete();
+        return redirect()->back()->with('message', 'User behasil di hapus!');
     }
 }

@@ -16,6 +16,11 @@
                         <!-- <div class="form-group">
                             <a href="{{route('admin.user.create')}}" class="btn btn-primary"> Tambah Berkas</a>
                         </div> -->
+                        @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{Session::get('message')}}
+                        </div>
+                        @endif
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
