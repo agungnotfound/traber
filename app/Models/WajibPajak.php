@@ -13,6 +13,8 @@ class WajibPajak extends Model
 
     protected $primaryKey = 'no_pelayanan';
 
+    protected $keyType = 'string';
+
     protected $fillable = [
         'no_pelayanan',
         'nama_wp',
@@ -21,6 +23,7 @@ class WajibPajak extends Model
         'alamat_objek_pajak',
         'luas_tanah',
         'luas_bangunan',
+        'notes',
         'id_pelayanan',
         'id_status',
     ];
