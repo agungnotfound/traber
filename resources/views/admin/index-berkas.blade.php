@@ -48,7 +48,7 @@
                                     <td>{{$row->status}}</td>
                                     <td>
                                         <a href="{{route('admin.wajib-pajak.edit', $row->no_pelayanan)}}" title="Edit"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" title="Update Status" class="openStatus"
+                                        <a href="#" title="Update Status" class="openStatus" data-notes="{{$row->notes}}"
                                             data-no_pel="{{$row->no_pelayanan}}" data-toggle="modal"
                                             data-target="#updateStatus"><i class="fa fa-eye"></i></a>
                                         <a href="#" data-href="{{route('admin.wajib-pajak.destroy', $row->no_pelayanan)}}" class="openConfirm" title="Delete"
@@ -112,6 +112,10 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="form-group">
+                        <label for="">Kendala pada berkas</label>
+                        <input type="text" name="notes" class="form-control" id="notes" placeholder="masukan kendala berkas jika ada">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -144,8 +148,10 @@ $('.openConfirm').on('click', function(e) {
 });
 $('.openStatus').on('click', function(e) {
     var nopel = $(this).data('no_pel')
+    var note = $(this).data('notes')
     $('#nopel').text(nopel)
     $('#no_pelayanan').val(nopel)
+    $('#notes').val(note)
 });
 </script>
 @endsection

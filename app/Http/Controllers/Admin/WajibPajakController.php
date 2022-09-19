@@ -97,6 +97,7 @@ class WajibPajakController extends Controller
         //
         $dataWP = WajibPajak::Find($request['no_pelayanan']);
         $dataWP->id_status = (int)$request['status'];
+        $dataWP->notes = $request['notes'];
         $dataWP->save();
         return redirect()->back()->with('message', 'Status No. Pelayanan: '.$request['no_pelayanan'] .' berhasil di update!');
     }
