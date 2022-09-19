@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>SI TRABER</title>
+        <title>TRABER | Tentang Kami</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,19 +23,37 @@
 
             .hmpg{
                 display: block;
-                margin-top:-50px;
                 margin-left: auto;
                 margin-right: auto;
                 height: 500px;
             }
+
+            .bg{
+                backdrop-filter: blur(20px);
+                background-image:url('{{asset('img/bg-track.jpeg')}}'); 
+                background-repeat: no-repeat; 
+                background-size: 100% 90%;
+            }
+            .footer-about {
+                position: relative;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: white;
+                text-align: center;
+                margin-top:80px;
+            }
+            .content-about{
+                margin-top:20px;
+                margin-left:200px;
+            }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="bg">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
-                    <p class="lead" style="font-size:12px;">SISTEM TRACKING BERKAS</p>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -69,15 +87,22 @@
                 </div>
             </div>
         </nav>
-        <div class="">
-            <img src="{{asset('img/bg-home.jpeg')}}" class="hmpg" alt="">
-            <div class="text-center">
-                <h1> <b>UPT PAJAK DAERAH WILAYAH IV PAKUHAJI</b> </h1>
-                <h1><b>Kabupaten Tangerang</b> </h1>
-                <h2>"ulah poho mayar PBB"</h2>
-                <img src="{{asset('img/bapenda.jpeg')}}" alt="">
+        <div class="content-about">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h1>TENTANG KAMI</h1>
+                        <div style="text-align:justify; font-size:20px;">
+                            <p>UPT Pajak Daerah Wilayah IV Pakuhaji diresmikan pada tahun 2019 yang mempunyai tugas melaksanakan sebagian tugas dan fungsi Badan Pendapatan Daerah dalam hal pelayanan Pajak Daerah dan teknis operasional tertentu serta administrasi perpajakan sesuai kewenangannya dan atau pelimpahan kewenangan dari Kepala Badan. Pada kantor UPT Pajak Daerah Wilayah IV Pakuhaji terdapat bagian yang mengelola data pelayanan masyarakat yang berfokus kepada berkas Pajak Bumi dan Bangunan, Wajib pajak adalah sebutan untuk orang yang akan membayar pajak. Data yang dikelola bertujuan untuk meningkatkan pelayanan pada kantor UPT Pajak Daerah Wilayah IV Pakuhaji. Pelayanan yang terdapat pada UPT Pajak Daerah Wilayah IV Pakuhaji yaitu Mutasi sebagian, Mutasi habis, Pembetulan, Pengaktivan dan Objek Pajak baru. UPTD Pajak daerah Wilayah IV, dengan wilayah kerja meliputi Kecamatan Kosambi, Kecamatan Teluk Naga, Pakuhaji, Sepatan dan Kecamatan Sepatan Timur.</p>
+                            <p>Jam pelayanan pada UPT Pajak Daerah Wilayah IV Pakuhaji adalah 08:00 WIB - 15.00 WIB buka dari senin sampai dengan Jum'at dengan waktu istirahat 45 menit. Jika ada Wajib Pajak datang diluar jam pelayanan maka akan diarahkan untuk datang esok hari, atau jika memang mendesak, Wajib Pajak bisa langsung menghadap kepada petugas terkait. UPT Pajak Daerah Wilayah IV Pakuhaji bertempat di Komplek Perkantoran Kecamatan Pakuhaji, Kabupaten Tangerang</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <footer class="fixed-bottom footer-about">
+            <img src="{{asset('img/bapenda.jpeg')}}" alt="">
+        </footer>
             
     </body>
 </html>

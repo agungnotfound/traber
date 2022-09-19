@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 Route::get('tracking', 'TrackingController@index')->name('tracking');
 Route::post('tracking.show', 'TrackingController@show')->name('tracking.show');
@@ -61,6 +62,17 @@ Route::group(
         'middleware'=>['auth','pegawai']
     ],
     function (){
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+        // profile
+        Route::get('profile.edit', 'ProfileController@edit')->name('profile.edit');
+        Route::post('profile.update{id}', 'ProfileController@update')->name('profile.update');
+
+        // Wajib Pajak
+        Route::get('wajib-pajak.create', 'WajibPajakController@create')->name('wajib-pajak.create');
+        Route::post('wajib-pajak.store', 'WajibPajakController@store')->name('wajib-pajak.store');
+        Route::get('wajib-pajak.index', 'WajibPajakController@index')->name('wajib-pajak.index');
+        Route::post('wajib-pajak.update', 'WajibPajakController@update')->name('wajib-pajak.update');
        
     }
 );
@@ -73,6 +85,16 @@ Route::group(
         'middleware'=>['auth','kupt']
     ],
     function (){
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
        
+        // profile
+        Route::get('profile.edit', 'ProfileController@edit')->name('profile.edit');
+        Route::post('profile.update{id}', 'ProfileController@update')->name('profile.update');
+
+        // Wajib Pajak
+        Route::get('wajib-pajak.create', 'WajibPajakController@create')->name('wajib-pajak.create');
+        Route::post('wajib-pajak.store', 'WajibPajakController@store')->name('wajib-pajak.store');
+        Route::get('wajib-pajak.index', 'WajibPajakController@index')->name('wajib-pajak.index');
+        Route::post('wajib-pajak.update', 'WajibPajakController@update')->name('wajib-pajak.update');
     }
 );
