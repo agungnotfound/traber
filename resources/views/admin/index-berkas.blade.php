@@ -47,11 +47,11 @@
                                     <td>{{$row->luas_tanah}}/{{$row->luas_bangunan}}</td>
                                     <td>{{$row->status}}</td>
                                     <td>
-                                        <a href="" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+                                        <a href="{{route('admin.wajib-pajak.edit', $row->no_pelayanan)}}" title="Edit"><i class="fa fa-pencil-alt"></i></a>
                                         <a href="#" title="Update Status" class="openStatus"
                                             data-no_pel="{{$row->no_pelayanan}}" data-toggle="modal"
                                             data-target="#updateStatus"><i class="fa fa-eye"></i></a>
-                                        <a href="" data-href="" class="openConfirm" title="Delete" data-id=""
+                                        <a href="#" data-href="{{route('admin.wajib-pajak.destroy', $row->no_pelayanan)}}" class="openConfirm" title="Delete"
                                             data-toggle="modal" data-target="#delete-berkas"><i
                                                 class="fa fa-trash"></i></a>
                                     </td>
@@ -67,7 +67,7 @@
 </section>
 
 <!-- Modal -->
-<div class="modal fade" id="delete-user" tabindex="-1" role="dialog" aria-labelledby="deleteUserLabel"
+<div class="modal fade" id="delete-berkas" tabindex="-1" role="dialog" aria-labelledby="deleteUserLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -78,11 +78,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                Apakah Anda Yakin menghapus User ini?
+                Apakah Anda Yakin menghapus Data ini?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a class="btn btn-danger btn-sure">Delete</a>
+                <a href="" class="btn btn-danger btn-sure">Delete</a>
             </div>
         </div>
     </div>

@@ -81,7 +81,8 @@ class WajibPajakController extends Controller
      */
     public function edit($id)
     {
-        //
+        $file = WajibPajak::Find($id); 
+        return view('admin.edit-doc', compact('file'));
     }
 
     /**
@@ -108,6 +109,23 @@ class WajibPajakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        WajibPajak::where('no_pelayanan', $id)->delete();
+        return redirect()->back()->with('message', 'Data No. Pelayanan: '.$id .' berhasil di hapus!');
+    }
+
+    public function updateData(Request $request)
+    {
+        $dataWP = WajibPajak::Find($request['no_pelayanan']);
+        $dataWP->nama_wp = $request['nama_wp'];
+        $dataWP->no_hp = $request['no_hp'];
+        $dataWP->alamat_pemohon = $request['alamat_pemohon'];
+        $dataWP->alamat_objek_pajak = $request['alamat_objek_pajak'];
+        $dataWP->luas_tanah =$request['luas_tanah'];
+        $dataWP->luas_bangunan = $request['luas_bangunan'];
+        $dataWP->id_pelayanan = $request['jenis_pelayanan'];
+
+        $dataWP->save();
+        return redirect()->back()->with('message', 'Status No. Pelayanan: '.$request['no_pelayanan'] .' berhasil di update!');
+
     }
 }
